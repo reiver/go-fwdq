@@ -15,7 +15,7 @@ func InsertBytes(queuePath string, when time.Time, bytes []byte) error {
 	var temppath string
 	var path string
 	{
-		var filename string = fileName(when, bytes)
+		var filename string = FileName(when, bytes)
 		if "" == filename {
 			return erorr.Errorf("fwdq: problem constructing file-name of fwdq element file using time %s and %d bytes — empty path", when, len(bytes))
 		}

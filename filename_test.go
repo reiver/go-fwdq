@@ -1,9 +1,11 @@
-package fwdq
+package fwdq_test
 
 import (
 	"testing"
 
 	"time"
+
+	"github.com/reiver/go-fwdq"
 )
 
 func TestFileName(t *testing.T) {
@@ -136,7 +138,7 @@ func TestFileName(t *testing.T) {
 
 	for testNumber, test := range tests {
 
-		actual := fileName(test.Time, test.Bytes)
+		actual := fwdq.FileName(test.Time, test.Bytes)
 
 		expected := test.Expected
 

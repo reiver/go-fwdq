@@ -5,7 +5,7 @@ import (
 	"time"
 )
 
-func fileName(when time.Time, bytes []byte) string {
+func FileName(when time.Time, bytes []byte) string {
 
 	var encodedTime string = timeString(when)
 
