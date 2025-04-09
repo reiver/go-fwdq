@@ -24,7 +24,7 @@ func Top(queuePath string, minTime time.Time) ([]string, error) {
 			return nil
 		}
 
-		if minTime.After(when) {
+		if when.Before(minTime) {
 			return nil
 		}
 
