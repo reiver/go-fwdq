@@ -8,6 +8,7 @@ import (
 	"github.com/reiver/go-erorr"
 )
 
+// Top returns all the names of all the elements in the forward-queue (FWDQ) whose 'time' is greater-than or equal to `minTime`.
 func Top(queuePath string, minTime time.Time) ([]string, error) {
 
 	var matches []string
