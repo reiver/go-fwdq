@@ -10,6 +10,25 @@ import (
 	libpath "github.com/reiver/go-path"
 )
 
+// InsertBytes inserts a new element into the forward-queue (FWDQ).
+//
+// A forward-queue (FWDQ) is a storage-drive based queue, where the elements of the queue are files in a particular directory.
+// The directory that the forward-queue (FWDQ) is in is given by `queuePath`.
+//
+// A forward-queue (FWDQ) is a priority-queue where the 'priority' is a date-time.
+// That date-time is given by `when`.
+//
+// The content of the new element to insert into the forward-queue (FWDQ) is given by `bytes`.
+//
+// Example:
+//
+//	const queuePath string = "/path/to/queue"
+//	
+//	var when time.Time = time.Now().Add(5 * time.Hour)
+//	
+//	var bytes []byte = []byte("Hello world!")
+//	
+//	err := fwdw.InsertBytes(queuePath, when, bytes)
 func InsertBytes(queuePath string, when time.Time, bytes []byte) error {
 
 	var temppath string
@@ -35,14 +54,19 @@ func InsertBytes(queuePath string, when time.Time, bytes []byte) error {
 	// This is precautionary.
 	// And, highly improbable to happen.
 	//
-	// If the spawn-*.fwd file already exists, we (try to) delete it.
+	// If the spawn-* file already exists, we (try to) delete it.
 	//
 	// Since digests (from hash-functions) are involved, if the file already exist it SHOULD get the same content.
 	//
 	// We delete it just in case, for example, there was a crash before the file was fully written to.
+	//
+	// Note that although we cannot guarantee a spawn-* file was fully written to, we can guarantee a regular file is fully written to,
+	// since a regular file is a fully written to spawn-* that has been renamed to a regular file.
 	{
 		err := os.Remove(temppath)
 		if nil != err {
+			// We ignore the error.
+//@TODO: we should only ignore the error if it is due to the file not existing (but pay attention to other errors).
 			
 		}
 	}
